@@ -1,0 +1,29 @@
+<!-- launch/laser_scan_matcher.launch -->
+<launch>
+  <node pkg="laser_scan_matcher"
+        type="laser_scan_matcher_node"
+        name="laser_scan_matcher_node"
+        output="screen">
+
+    <rosparam file="$(find jetbot_navigation)/config/laser_scan_matcher.yaml"/>
+
+    <remap from="scan" to="/scan"/>
+    <remap from="imu/data"  to="/imu/data_filtered"/>
+   
+    <!-- output: /odom topic + odom→base_link TF -->
+  </node>
+  <node pkg="jetbot_navigation"
+        type="pose_to_odom.py"
+        name="pose_to_odom"
+        output="screen">
+    <param name="odom_frame" value="odom"/>
+    <param name="base_frame" value="base_link"/>
+    <!-- Diagonal covariance values [x, y, z, rx, ry, rz] -->
+    <rosparam param="pose_covariance_diagonal">
+      [0.05, 0.05, 1e6, 1e6, 1e6, 0.03]
+    </rosparam>
+    <rosparam param="twist_covariance_diagonal">
+      [0.1, 0.1, 1e6, 1e6, 1e6, 0.05]
+    </rosparam>
+  </node>
+</launch>

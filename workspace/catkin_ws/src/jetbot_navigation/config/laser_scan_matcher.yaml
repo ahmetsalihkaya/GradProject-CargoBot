@@ -1,0 +1,23 @@
+# config/laser_scan_matcher.yaml
+
+# Input frames — match your URDF exactly
+base_frame:  base_link
+fixed_frame: odom
+laser_frame: laser        # your URDF laser link name
+
+# Sensor fusion — you have /imu, use it!
+use_imu:   true
+use_odom:  false
+
+# Output
+publish_tf:  false         # broadcasts odom → base_link
+publish_pose_stamped: true        # publishes nav_msgs/Odometry on /odom
+
+# Matcher tuning
+max_iterations:     10
+max_correspondence_dist: 0.3
+max_angular_correction_deg: 45.0
+max_linear_correction:      0.5
+
+kf_dist_linear:  0.10     # keyframe every 10cm
+kf_dist_angular: 0.175    # keyframe every ~10 degrees

@@ -1,0 +1,24 @@
+<launch>
+
+  <!-- Start Cartographer -->
+  <node name="cartographer_node"
+        pkg="cartographer_ros"
+        type="cartographer_node"
+        output="screen"
+        args="-configuration_directory $(find my_cartographer_config)/config
+              -configuration_basename jetbot_2d.lua">
+
+    <remap from="scan" to="/scan"/>
+    <remap from="imu" to="/imu"/>
+
+  </node>
+
+  <!-- Occupancy Grid -->
+  <node name="occupancy_grid_node"
+        pkg="cartographer_ros"
+        type="occupancy_grid_node"
+        output="screen">
+    <param name="resolution" value="0.05"/>
+  </node>
+
+</launch>

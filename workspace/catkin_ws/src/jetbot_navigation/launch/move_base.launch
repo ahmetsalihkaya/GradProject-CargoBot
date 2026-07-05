@@ -1,0 +1,25 @@
+<!-- launch/move_base.launch -->
+<launch>
+  <node pkg="move_base" type="move_base" name="move_base"
+        respawn="false" output="screen">
+
+    <rosparam file="$(find jetbot_navigation)/config/move_base/costmap_common_params.yaml"
+              command="load" ns="global_costmap"/>
+    <rosparam file="$(find jetbot_navigation)/config/move_base/costmap_common_params.yaml"
+              command="load" ns="local_costmap"/>
+    <rosparam file="$(find jetbot_navigation)/config/move_base/global_costmap_params.yaml"
+              command="load"/>
+    <rosparam file="$(find jetbot_navigation)/config/move_base/local_costmap_params.yaml"
+              command="load"/>
+    <rosparam file="$(find jetbot_navigation)/config/move_base/dwa_local_planner_params.yaml"
+              command="load"/>
+
+    <param name="base_global_planner" value="navfn/NavfnROS"/>
+    <param name="base_local_planner"  value="dwa_local_planner/DWAPlannerROS"/>
+    <param name="controller_frequency" value="2.5"/>
+    <param name="planner_frequency" value="1.0"/>
+
+    <remap from="cmd_vel" to="/cmd_vel"/>
+    <remap from="odom"    to="/odom"/>
+  </node>
+</launch>

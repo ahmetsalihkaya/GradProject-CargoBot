@@ -1,0 +1,43 @@
+# config/amcl.yaml
+
+# Frame IDs — match URDF & laser_scan_matcher
+odom_frame_id:   odom
+base_frame_id:   base_link
+global_frame_id: map
+transform_tolerance: 0.5
+
+
+
+#initial Positions
+initial_pose_x: 3.493
+initial_pose_y:  2.030
+initial_pose_a:  0.012
+
+# Sensor
+laser_model_type:  likelihood_field
+laser_max_range:   12.0
+laser_min_range:   0.15
+laser_max_beams:   60
+
+# Odometry model (differential drive JetBot)
+odom_model_type: diff-corrected
+odom_alpha1: 0.1       # rotation noise from rotation
+odom_alpha2: 0.1       # rotation noise from translation
+odom_alpha3: 0.1       # translation noise from translation
+odom_alpha4: 0.1       # translation noise from rotation
+odom_alpha5: 0.1
+
+# Particle filter
+min_particles: 250
+max_particles: 1000
+initial_cov_xx: 0.25
+initial_cov_yy: 0.25
+initial_cov_aa: 0.068  # (pi/12)^2
+
+# Update thresholds
+update_min_d: 0.01      # update after 10cm movement
+update_min_a: 0.05      # update after ~11 degrees rotation
+
+# Output
+publish_map_transform: true   # publishes map → odom TF ← key!
+tf_broadcast: true

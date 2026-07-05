@@ -1,0 +1,11 @@
+<!-- launch/amcl.launch -->
+<launch>
+  <!-- Static map from your Cartographer map -->
+  <node pkg="map_server" type="map_server" name="map_server"
+        args="$(find jetbot_navigation)/maps/my_map3.yaml"
+        output="screen"/>
+  <node pkg="amcl" type="amcl" name="amcl" output="screen">
+    <rosparam file="$(find jetbot_navigation)/config/amcl.yaml"/>
+    <remap from="scan" to="/scan"/>
+  </node>
+</launch>

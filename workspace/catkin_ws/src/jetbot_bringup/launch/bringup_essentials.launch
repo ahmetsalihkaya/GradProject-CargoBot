@@ -1,0 +1,8 @@
+<launch>
+  <!-- Robot state publisher -->
+  <include file="$(find jetbot_description)/launch/jetbot_rsp.launch" />
+
+  <!-- Motors node -->
+  <node pkg="jetbot_ros" type="jetbot_motors.py" name="jetbot_motors" output="screen" />
+
+</launch>

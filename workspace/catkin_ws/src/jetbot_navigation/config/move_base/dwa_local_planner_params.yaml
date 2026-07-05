@@ -1,0 +1,30 @@
+DWAPlannerROS:
+  # JetBot physical limits
+  max_vel_x:   0.4  #0.3
+  min_vel_x:   0.35 #0.25          # no reverse (safe default)
+  max_vel_y:   0.0          # differential drive, no lateral
+  min_vel_y:   0.0
+  max_vel_theta:  2.0
+  min_vel_theta:  0.0
+
+  acc_lim_x:     2.0
+  acc_lim_y:     0.0
+  acc_lim_theta: 4.0
+
+  # Goal tolerances
+  xy_goal_tolerance:  0.10  # 10cm
+  yaw_goal_tolerance: 6.28  # ~8 degrees
+  latch_xy_goal_tolerance: true
+
+  # Scoring weights
+  path_distance_bias:  32.0
+  goal_distance_bias:  20.0
+  occdist_scale:       0.15 #0.08
+
+  sim_time:         1
+  # sim_granularity:  0.025
+  # vx_samples:       20
+  # vtheta_samples:   40
+
+  # Odom topic — matches laser_scan_matcher output
+  odom_topic: /odom

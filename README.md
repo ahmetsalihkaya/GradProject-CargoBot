@@ -84,7 +84,7 @@ A custom 3D-printed cargo trailer is attached to the rear of the robot, enabling
 ## System Architecture
 
 <p align="left">
-  <img src="assets/Table.jpeg" alt="CargoBot — Side View" width="750"/>
+  <img src="assets/table.jpeg" alt="CargoBot — Side View" width="750"/>
 </p>
 
 ---
